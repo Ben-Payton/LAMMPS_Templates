@@ -1,0 +1,10 @@
+fix             {FIX_N} all nvt temp {START_TEMP} {END_TEMP} {RATE_TEMP_INCREASE}
+thermo_style    custom step temp pe press vol density
+thermo          100
+timestep        {TIME_STEP_SIZE}
+dump MyData all xyz 1000 dump.xyz
+run             {TIME_STEP_N}
+unfix           3
+undump MyData
+write_restart   {RESTART_FILE}
+write_data      {WRITE_OUT_FILE}

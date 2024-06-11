@@ -1,0 +1,10 @@
+fix             {FIX_N} all npt temp {START_TEMP} {END_TEMP} {RATE_TEMP_CHANGE} iso {START_PRESS} {END_PRESS} {RATE_PRESS_CHANGE}
+thermo_style    custom step temp pe press vol density
+thermo          100
+timestep        {TIME_STEP_SIZE}
+dump MyData all xyz 1000 dump.xyz
+run             {TIME_STEP_N}
+unfix           {FIX_N}
+undump MyData
+write_restart   restart.Water15.in.reax3
+write_data      reax4.dat
